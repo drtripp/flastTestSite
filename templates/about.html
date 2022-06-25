@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>About</title>
+{% endblock %}
+
+{% block body %}
+<h1>Hello,</h1>
+<p>I'm Dawson, a data scientist. This site was
+    built with Flask</p>
+<img src="{{url_for('static', filename = 'hello.png')}}" alt="Hello World">
+{% endblock %}

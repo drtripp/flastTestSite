@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>State Statistics</title>
+{% endblock %}
+
+{% block body %}
+
+<div id = "selector">
+    <br>
+    <center>
+        <p>X:  </p>
+    <select id="xcol" name="xcol" method="GET" action="/">
+        {% for i, col in cols.items() %}
+            {% if i ==  x %}
+                <option value="{{i}}" selected>{{col}}</option>"
+            {% else %}
+                <option value="{{i}}" >{{col}}</option>"
+            {% endif %}
+        {% endfor %}
+    </select>
+        <p>Y:  </p>
+    <select id="ycol" name="ycol" method="GET" action="/">
+        {% for i, col in cols.items() %}
+            {% if i ==  y %}
+                <option value="{{i}}" selected>{{col}}</option>"
+            {% else %}
+                <option value="{{i}}" >{{col}}</option>"
+            {% endif %}
+        {% endfor %}
+    </select>
+    <br><br>
+    <button onclick="myFunction()">Generate</button>
+        <br><br>
+    </center>
+</div>
+
+
+
+{{ plot | safe }}
+
+<p>r = {{ r }} </p>
+<p>r^2 = {{ rsq }} </p>
+
+<script>
+    function myFunction() {
+  let y = document.getElementById("ycol").value;
+  let x = document.getElementById("xcol").value;
+  window.location.replace("http://127.0.0.1:5000/state_statistics/" +
+  x + "_" +
+  y);
+}
+</script>
+
+{% endblock %}
